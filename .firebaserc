@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "deepstreets-b48d9": {
+      "hosting": {
+        "test-deep-streets": [
+          "deepstreets-b48d9"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "deepstreets-b48d9"
+  }
+}
