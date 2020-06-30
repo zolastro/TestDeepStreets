@@ -34,8 +34,8 @@ export class AppComponent {
   }
 
   getNewQuestion() {
-    let idxReal = Math.floor(Math.random() * 3)
-    let idxFake = Math.floor(Math.random() * 3)
+    let idxReal = Math.floor(Math.random() * 8164)
+    let idxFake = Math.floor(Math.random() * 8164)
     let isFirst = Math.random() > 0.5
     let pathA = (isFirst? idxReal : idxFake) + '.jpg';
     let pathB = (isFirst? idxFake : idxReal) + '.jpg';
