@@ -11,13 +11,16 @@
     <figcaption>Input - Fake Output - Target Output</figcaption>
   </figure>
     
-  <p>To test these results, I need your help. I am going to show you two different satelite images. One is real and the other isn't. Try to select the one that you think is real. Are you ready?</p>
+  <p>To test these results, I need your help. I am going to show you two different satelite images. One is real and the other isn't. Try to select the one that you think is real. 
+    It is not a competition, so don't worry if you are not able to distingish them (thats the whole point of the project). Are you ready?</p>
   <button (click)="readyClicked()" class="ready-button" mat-raised-button color="accent">I'm ready!</button>
 </div>  
 
-<div *ngIf="ready">
+<div class="info" *ngIf="ready">
   <h2>
     Select the real one:
   </h2>
   <app-question (onSelect)="answerSelected($event)" [question]="question"></app-question>
+  <button (click)="getNewQuestion()" class="ready-button" mat-raised-button color="accent">I wasn't looking! 🤞</button>
+  <p>Fell free to stop whenever you want. Thanks for helping!</p>
 </div>

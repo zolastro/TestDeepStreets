@@ -30,7 +30,7 @@ export class AppComponent {
 
   answerSelected(answer: Answer) {
     this.addNewAnswer(answer)
-    this.question = {...this.getNewQuestion()}
+    this.getNewQuestion()
   }
 
   getNewQuestion() {
@@ -39,11 +39,13 @@ export class AppComponent {
     let isFirst = Math.random() > 0.5
     let pathA = (isFirst? idxReal : idxFake) + '.jpg';
     let pathB = (isFirst? idxFake : idxReal) + '.jpg';
-    return new Question([pathA, pathB], isFirst)
+    this.question = {...new Question([pathA, pathB], isFirst)}
+    
   }
 
   readyClicked() {
     this.ready = true;
+    this.getNewQuestion()
   }
 
 }
