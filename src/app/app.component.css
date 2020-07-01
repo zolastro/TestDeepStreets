@@ -24,3 +24,9 @@ app-question {
 figcaption {
     text-align: center;
 }
+
+@media only screen and (max-width: 800px) {
+    .example {
+        width: 100%;
+    }
+}

@@ -14,7 +14,7 @@ import { Question } from './models/question';
 export class AppComponent {
 
   ready = false;
-
+  showCountdown = true;
   private answersCollection: AngularFirestoreCollection<Answer>
   title = 'test-deep-streets';
   question = new Question(['0.jpg', '0.jpg'], true)
@@ -34,11 +34,14 @@ export class AppComponent {
   }
 
   getNewQuestion() {
-    let idxReal = Math.floor(Math.random() * 8164)
-    let idxFake = Math.floor(Math.random() * 8164)
+    const epochs = [65, 70, 75, 80, 85, 90]
+    let idxEpoch = Math.floor(Math.random() * epochs.length)
+    let idxReal = Math.floor(Math.random() * 1000)
+    let idxFake = Math.floor(Math.random() * 1000)
     let isFirst = Math.random() > 0.5
-    let pathA = (isFirst? idxReal : idxFake) + '.jpg';
-    let pathB = (isFirst? idxFake : idxReal) + '.jpg';
+    let pathA = (isFirst? idxReal : ('epoch' + epochs[idxEpoch] + '/' + idxFake)) + '.jpg';
+    let pathB = (isFirst? ('epoch' + epochs[idxEpoch] + '/' + idxFake) : idxReal) + '.jpg';
+
     this.question = {...new Question([pathA, pathB], isFirst)}
     
   }

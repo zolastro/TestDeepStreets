@@ -8,11 +8,18 @@ import { Question } from '../models/question';
   styleUrls: ['./question.component.css']
 })
 export class QuestionComponent implements OnInit {
+  @Input() showCountdown: boolean;
+
   private _question: Question
   @Input() 
   set question(question: Question) {
+    console.log(this.showCountdown)
     this._question = question
-    this.resetCountdown()
+    if (this.showCountdown) {
+      this.resetCountdown()
+    } else {
+      this.showImages()
+    }
   }
 
   get question(): Question { return this._question; }
@@ -33,11 +40,12 @@ export class QuestionComponent implements OnInit {
         this.decreaseCountdown()
       }
       if (this.countdown == 0) {
-        this.showImages();
+        setTimeout(()=> {
+          this.showImages()
+        }, 300)
       }  
     }, 1000)
     this.countdown -= 1
-    console.log(this.countdown)
   }
   
   resetCountdown() {
