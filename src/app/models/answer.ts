@@ -1,7 +1,8 @@
 export class Answer {
     constructor (
-        public realPath: string,
-        public fakePath: string,
+        public APath: string,
+        public BPath: string,
+        public answer: string,
         public correct: boolean
     ) {}
 }

@@ -14,10 +14,19 @@
   }
 
   .row {
+    display: flex;
+    justify-content: center;
     margin: auto;
      }
 
   .countdown {
-      font-size: 15vw;
+      font-size: 10vw;
       text-align: center;
+  }
+
+  .both-button {
+    display: block;
+    margin: 15px auto;
+    padding:15px;
+    font-size: 14pt;
   }

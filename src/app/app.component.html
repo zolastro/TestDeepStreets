@@ -1,32 +1,4 @@
 <mat-toolbar color="primary">
   <span>Deep Streets</span>
 </mat-toolbar>
-<div *ngIf="!ready" class="info">
-  <h1>
-    What is this?
-  </h1>
-  <p>I am currently testing my master's final project. This involves generating realistic outputs from a map-sketch. Here is an example:</p>
-  <div>
-    <img class="example" src="assets/images/examples/59.jpg">
-    <figcaption>Input - Fake Output - Target Output</figcaption>
-  </div>
-    
-  <p>To test these results, I need your help. I am going to show you two different satelite images. One is real and the other isn't. Try to select the one that you think is real. 
-    It is not a competition, so don't worry if you are not able to distingish them (thats the whole point of the project). Are you ready?</p>
-  <button (click)="readyClicked()" class="ready-button" mat-raised-button color="accent">I'm ready!</button>
-</div>  
-
-<div class="info" *ngIf="ready">
-  <h2>
-    Select the real one:
-  </h2>
-  <mat-slide-toggle
-  class="example-margin"
-  color="accent"
-  [(ngModel)]="showCountdown">
-  Show countdown
-  </mat-slide-toggle>
-  <app-question [showCountdown]=showCountdown (onSelect)="answerSelected($event)" [question]="question"></app-question>
-  <button (click)="getNewQuestion()" class="ready-button" mat-raised-button color="accent">I wasn't looking! 🤞</button>
-  <p>Feel free to stop whenever you want. Thanks for helping!</p>
-</div>
+<router-outlet></router-outlet>

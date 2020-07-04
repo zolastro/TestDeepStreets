@@ -8,6 +8,7 @@ import { Question } from '../models/question';
   styleUrls: ['./question.component.css']
 })
 export class QuestionComponent implements OnInit {
+
   @Input() showCountdown: boolean;
 
   private _question: Question
@@ -18,7 +19,7 @@ export class QuestionComponent implements OnInit {
     if (this.showCountdown) {
       this.resetCountdown()
     } else {
-      this.showImages()
+      setTimeout(() => this.showImages(), 600)
     }
   }
 
@@ -40,9 +41,7 @@ export class QuestionComponent implements OnInit {
         this.decreaseCountdown()
       }
       if (this.countdown == 0) {
-        setTimeout(()=> {
           this.showImages()
-        }, 300)
       }  
     }, 1000)
     this.countdown -= 1
@@ -62,20 +61,7 @@ export class QuestionComponent implements OnInit {
 
   selectAnswer(option:number) {
     let answer: Answer;
-    if (this.question.isFirst) {
-      answer = new Answer(this.question.paths[0], this.question.paths[1], option == 0)
-    } else {
-      answer = new Answer(this.question.paths[1], this.question.paths[0], option == 1)
-    }
+    answer = new Answer(this.question.pathA, this.question.pathB, Question.options[option], Question.options[option] == this.question.correctOption)
     this.onSelect.emit(answer)
-  }
-
-  getPrefix(option: number) {
-    if ((this.question.isFirst && option == 0) ||
-        (!this.question.isFirst && option != 0)) {
-      return 'real/'
-    } else {
-      return 'fake/'
-    }
   }
 }

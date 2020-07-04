@@ -1,0 +1,12 @@
+<h2>
+Select the real one:
+</h2>
+<h3>Feel free to stop whenever you want. Thanks for helping!</h3>
+<mat-slide-toggle
+class="example-margin"
+color="accent"
+[(ngModel)]="showCountdown">
+Show countdown
+</mat-slide-toggle>
+<app-question [showCountdown]=showCountdown (onSelect)="answerSelected($event)" [question]="question"></app-question>
+<button (click)="getNewQuestion()" class="miss-button" mat-raised-button color="accent">I wasn't looking! 🤞</button>

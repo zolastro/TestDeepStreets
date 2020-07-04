@@ -12,11 +12,17 @@ import {MatToolbarModule} from '@angular/material/toolbar'
 import {MatButtonModule} from '@angular/material/button';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {FormsModule} from '@angular/forms';
+import { DataComponent } from './data/data.component';
+import { HomeComponent } from './home/home.component';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    QuestionComponent
+    QuestionComponent,
+    DataComponent,
+    HomeComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,

@@ -1,20 +1,25 @@
 <h1 [hidden]="countdown < 1" class="countdown">{{countdown}}</h1>
 
-<div [hidden]="countdown > 0 || !show" class="row">
-    <div class="column">
-      <img src="assets/images/{{getPrefix(0) + question.paths[0]}}" style="width:100%">
+<div [hidden]="countdown > 0 || !show">
+  <div class="row">
+      <div class="column">
+        <img src="assets/images/{{question.pathA}}" style="width:100%">
+      </div>
+      <div class="column">
+          <img src="assets/images/{{question.pathB}}" style="width:100%">    
+      </div>
     </div>
-    <div class="column">
-        <img src="assets/images/{{getPrefix(1) + question.paths[1]}}" style="width:100%">    
-    </div>
-  </div>
+</div>
 
+<div [hidden]="countdown > 0 || show">
+  <div class="row">
+      <div class="column">
+        <img (click)="selectAnswer(0)" src="assets/images/template/A.jpg" style="width:100%">
+      </div>
+      <div class="column">
+          <img (click)="selectAnswer(1)" src="assets/images/template/B.jpg" style="width:100%">    
+      </div>
+    </div>
+</div>
 
-<div [hidden]="countdown > 0 || show" class="row">
-    <div class="column">
-      <img (click)="selectAnswer(0)" src="assets/images/template/A.jpg" style="width:100%">
-    </div>
-    <div class="column">
-        <img (click)="selectAnswer(1)" src="assets/images/template/B.jpg" style="width:100%">    
-    </div>
-  </div>
+<button class="both-button" [disabled]="countdown > 0 || show" (click)="selectAnswer(2)"  mat-raised-button color="primary">Both are real</button>

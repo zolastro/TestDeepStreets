@@ -1,6 +1,8 @@
 export class Question {
+    static options = ['A', 'B', 'both']; 
     constructor(
-        public paths: string[],
-        public isFirst: boolean
+        public pathA: string,
+        public pathB: string,
+        public correctOption: string
     ) {}
 }
