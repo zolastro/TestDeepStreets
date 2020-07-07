@@ -37,10 +37,14 @@ export class TestComponent implements OnInit{
     if (user) {
       this.usersRef = this.afs.collection<any>('user_stats');
       this.usersRef.valueChanges({idField: user.uid}).subscribe((values) => {
+        console.log(values)
         if (values.length > 0) {
           this.totalClassified = values[0].totalClassified;
           this.score = values[0].score
-        } 
+        } else {
+          this.totalClassified = 0;
+          this.score = 0;
+        }
       });
     } else {
       this.totalClassified = 0;
