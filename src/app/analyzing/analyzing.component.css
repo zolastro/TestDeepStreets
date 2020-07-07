@@ -1,0 +1,11 @@
+.monkey {
+    margin: auto;
+    display: block;
+    width: 30%;
+}
+
+@media only screen and (max-width: 800px) {
+    .monkey {
+        width: 100%;
+    }
+}
