@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import {Answer} from './models/answer';
-import { Question } from './models/question';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { auth, User } from 'firebase/app';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,5 +12,16 @@ import { Question } from './models/question';
 
 export class AppComponent {
 
+  user: User;
+
+  constructor(public auth: AngularFireAuth) {
+    this.auth.user.subscribe(user => this.user = user)
+  }
   
+  login() {
+    this.auth.signInWithPopup(new auth.GoogleAuthProvider());
+  }
+  logout() {
+    this.auth.signOut();
+  }
 }

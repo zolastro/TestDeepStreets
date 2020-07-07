@@ -3,3 +3,6 @@
     margin: auto;
     font-size: 14pt;
 }
+.toggle-button {
+    float: right;
+}

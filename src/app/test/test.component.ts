@@ -3,6 +3,8 @@ import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/fire
 import { Question } from '../models/question';
 import { Observable } from 'rxjs';
 import { Answer } from '../models/answer';
+import { User } from 'firebase';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-test',
@@ -10,16 +12,41 @@ import { Answer } from '../models/answer';
   styleUrls: ['./test.component.css']
 })
 export class TestComponent implements OnInit{
+  
   ready = false;
   showCountdown = true;
   private answersCollection: AngularFirestoreCollection<Answer>
   title = 'test-deep-streets';
   answers: Observable<Answer[]>;
   question: Question;
-  constructor(afs: AngularFirestore) {
+  
+  user: User;
+  totalClassified;
+  score;
+  usersRef;
+
+  constructor(public afs: AngularFirestore, public auth: AngularFireAuth) {
     this.answersCollection = afs.collection<Answer>('realvsfake');
     this.answers = this.answersCollection.valueChanges();
+    this.auth.user.subscribe(user => this.getUserData(user));
   }
+
+  getUserData(user: User) {
+    this.user = user;
+    console.log(user)
+    if (user) {
+      this.usersRef = this.afs.collection<any>('user_stats');
+      this.usersRef.valueChanges({idField: user.uid}).subscribe((values) => {
+        if (values.length > 0) {
+          this.totalClassified = values[0].totalClassified;
+          this.score = values[0].score
+        } 
+      });
+    } else {
+      this.totalClassified = 0;
+      this.score = 0;
+    }
+  }  
 
   ngOnInit() {
     this.getNewQuestion();
@@ -27,11 +54,28 @@ export class TestComponent implements OnInit{
 
   addNewAnswer(answer: Answer){
     this.answersCollection.add({...answer});
+
+    this.totalClassified += 1;
+    if (answer.correct) {
+      this.score += 100
+    } else {
+      if (answer.answer = 'both') {
+        this.score -= 50;
+      } else {
+        this.score -= 100;
+      }
+    }
+    
+    this.usersRef.doc(this.user.uid).set({
+      totalClassified: this.totalClassified,
+      score: this.score
+    }, {merge: true})
   }
 
   answerSelected(answer: Answer) {
     this.addNewAnswer(answer)
     this.getNewQuestion()
+    this.totalClassified += 1
   }
 
   getNewQuestion() {

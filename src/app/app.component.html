@@ -1,4 +1,16 @@
 <mat-toolbar color="primary">
   <span>Deep Streets</span>
+  <span style="flex: 1 1 auto"></span>
+  <button *ngIf="!user" (click)=login() mat-button>
+    <mat-icon>account_circle</mat-icon>
+    Login
+  </button>  
+  <button *ngIf="user" (click)=logout() mat-button>
+    <mat-icon>perm_identity</mat-icon>
+    Logout
+  </button>
 </mat-toolbar>
-<router-outlet></router-outlet>
+
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

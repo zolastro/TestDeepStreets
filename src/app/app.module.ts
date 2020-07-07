@@ -15,6 +15,8 @@ import {FormsModule} from '@angular/forms';
 import { DataComponent } from './data/data.component';
 import { HomeComponent } from './home/home.component';
 import { TestComponent } from './test/test.component';
+import {MatIconModule} from '@angular/material/icon';
+import { AnalyzingComponent } from './analyzing/analyzing.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { TestComponent } from './test/test.component';
     QuestionComponent,
     DataComponent,
     HomeComponent,
-    TestComponent
+    TestComponent,
+    AnalyzingComponent
   ],
   imports: [
     BrowserModule,
@@ -33,9 +36,11 @@ import { TestComponent } from './test/test.component';
     MatSlideToggleModule,
     FormsModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule,
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
