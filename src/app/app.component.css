@@ -2,3 +2,10 @@
     margin: 0 40px;
     font-size: 14pt;
 }
+
+
+@media only screen and (max-width: 800px) {
+    .label {
+        display: none;
+    }
+}

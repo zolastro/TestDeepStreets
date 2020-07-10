@@ -1,5 +1,17 @@
 <mat-toolbar color="primary">
   <span>Deep Streets</span>
+  <button routerLink='home' mat-button>
+    <mat-icon>home</mat-icon>
+    <span class="label">Home</span>
+  </button>
+  <button routerLink='test' mat-button>
+    <mat-icon>help</mat-icon>
+    <span class="label">Tests</span>  
+  </button>
+  <button routerLink='ranking' mat-button>
+    <mat-icon>analytics</mat-icon>
+    <span class="label">Rankings</span>  
+  </button>
   <span style="flex: 1 1 auto"></span>
   <button *ngIf="!user" (click)=login() mat-button>
     <mat-icon>account_circle</mat-icon>

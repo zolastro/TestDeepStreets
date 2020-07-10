@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { QuestionComponent } from './question/question.component';
+import { QuestionComponent } from './test/question/question.component';
 import {MatToolbarModule} from '@angular/material/toolbar'
 import {MatButtonModule} from '@angular/material/button';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
@@ -17,6 +17,8 @@ import { HomeComponent } from './home/home.component';
 import { TestComponent } from './test/test.component';
 import {MatIconModule} from '@angular/material/icon';
 import { AnalyzingComponent } from './analyzing/analyzing.component';
+import { RankingComponent } from './ranking/ranking.component';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { AnalyzingComponent } from './analyzing/analyzing.component';
     DataComponent,
     HomeComponent,
     TestComponent,
-    AnalyzingComponent
+    AnalyzingComponent,
+    RankingComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +41,7 @@ import { AnalyzingComponent } from './analyzing/analyzing.component';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
+    MatTableModule
   ],
   providers: [
   ],

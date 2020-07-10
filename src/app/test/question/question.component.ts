@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Answer } from '../models/answer';
-import { Question } from '../models/question';
+import { Answer } from '../../models/answer';
+import { Question } from '../../models/question';
 
 @Component({
   selector: 'app-question',
@@ -14,7 +14,6 @@ export class QuestionComponent implements OnInit {
   private _question: Question
   @Input() 
   set question(question: Question) {
-    console.log(this.showCountdown)
     this._question = question
     if (this.showCountdown) {
       this.resetCountdown()

@@ -2,7 +2,7 @@
     display: block;
     margin: auto;
     font-size: 14pt;
-
+    margin-bottom: 15px;
 }
 
 .example {
@@ -14,6 +14,27 @@
 figcaption {
     text-align: center;
 }
+
+/* Three image containers (use 25% for four, and 50% for two, etc) */
+.column {
+    float: left;
+    width: calc(50% - 10px);
+    padding: 5px;
+    max-width: 256px;
+  }
+  
+  /* Clear floats after image containers */
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  .row {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+     }
 
 @media only screen and (max-width: 800px) {
     .example {

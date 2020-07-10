@@ -10,5 +10,7 @@ Show countdown
 </mat-slide-toggle>
 <br>
 <span>Score: {{score != null? score : 'Loading...'}}</span>
+<br>
+<b *ngIf=!user>Login to save your score!</b>
 <app-question [showCountdown]=showCountdown (onSelect)="answerSelected($event)" [question]="question"></app-question>
 <button (click)="getNewQuestion()" class="miss-button" mat-raised-button color="accent">I wasn't looking! 🤞</button>

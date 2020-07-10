@@ -25,19 +25,13 @@ export class TestComponent implements OnInit{
   score;
   usersRef;
 
-  constructor(public afs: AngularFirestore, public auth: AngularFireAuth) {
-    this.answersCollection = afs.collection<Answer>('realvsfake');
-    this.answers = this.answersCollection.valueChanges();
-    this.auth.user.subscribe(user => this.getUserData(user));
+  constructor(private afs: AngularFirestore, private auth: AngularFireAuth) {
   }
-
+  
   getUserData(user: User) {
     this.user = user;
-    console.log(user)
     if (user) {
-      this.usersRef = this.afs.collection<any>('user_stats');
       this.usersRef.valueChanges({idField: user.uid}).subscribe((values) => {
-        console.log(values)
         if (values.length > 0) {
           this.totalClassified = values[0].totalClassified;
           this.score = values[0].score
@@ -51,9 +45,13 @@ export class TestComponent implements OnInit{
       this.score = 0;
     }
   }  
-
+  
   ngOnInit() {
+    this.answersCollection = this.afs.collection<Answer>('realvsfake');
+    this.answers = this.answersCollection.valueChanges();
+    this.usersRef = this.afs.collection<any>('user_stats');
     this.getNewQuestion();
+    this.auth.user.subscribe(user => this.getUserData(user));
   }
 
   addNewAnswer(answer: Answer){
@@ -69,11 +67,13 @@ export class TestComponent implements OnInit{
         this.score -= 100;
       }
     }
-    
-    this.usersRef.doc(this.user.uid).set({
-      totalClassified: this.totalClassified,
-      score: this.score
-    }, {merge: true})
+    if (this.user) {
+      this.usersRef.doc(this.user.uid).set({
+        totalClassified: this.totalClassified,
+        score: this.score,
+        name: this.user.displayName
+      }, {merge: true})
+    }
   }
 
   answerSelected(answer: Answer) {
