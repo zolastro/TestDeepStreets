@@ -87,7 +87,7 @@ export class TestComponent implements OnInit{
     let isFirst = Math.random() > 0.5
     let pathA: string;
     if (getFake) {
-      const epochs = [65, 70, 75, 80, 85, 90]
+      const epochs = [80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 130, 135, 140]
       let idxEpoch = Math.floor(Math.random() * epochs.length)
       let idxA = Math.floor(Math.random() * 1000)
       pathA = 'fake/epoch' + epochs[idxEpoch] + '/' + idxA + '.jpg';
